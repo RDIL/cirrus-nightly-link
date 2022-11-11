@@ -1,0 +1,25 @@
+{
+    "name": "cirrus-nightly-link",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "type": "module",
+    "dependencies": {
+        "@apollo/client": "^3.7.1",
+        "fastify": "^4.9.2"
+    },
+    "devDependencies": {
+        "@types/node": "^18.11.9",
+        "prettier": "^2.7.1",
+        "typescript": "^4.8.4"
+    },
+    "prettier": {
+        "semi": false,
+        "tabWidth": 4,
+        "trailingComma": "all"
+    },
+    "scripts": {
+        "prettier": "prettier --write \"**/*.{ts,js,json,md}\""
+    },
+    "packageManager": "yarn@4.0.0-rc.28"
+}
