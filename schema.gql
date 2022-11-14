@@ -1,0 +1,1415 @@
+"""
+Exposes a URL that specifies the behaviour of this scalar.
+"""
+directive @specifiedBy(
+    """
+    The URL that specifies the behaviour of this scalar.
+    """
+    url: String!
+) on SCALAR
+
+type ApiAccessToken {
+    maskedToken: String
+    creationTimestamp: Int
+}
+
+type ArtifactFileInfo {
+    path: String!
+    size: Int!
+}
+
+type Artifacts {
+    name: String!
+    type: String
+    format: String
+    files: [ArtifactFileInfo]
+}
+
+type BillingSettings {
+    platform: String!
+    ownerUid: String!
+    enabled: Boolean!
+    billingCreditsLimit: Int!
+    billingEmailAddress: String!
+    invoiceTemplate: String
+}
+
+input BillingSettingsInput {
+    platform: String
+    ownerUid: ID!
+    enabled: Boolean!
+    billingEmailAddress: String!
+    invoiceTemplate: String
+    clientMutationId: String
+}
+
+type BillingSettingsPayload {
+    settings: BillingSettings
+    clientMutationId: String
+}
+
+type Build {
+    id: ID!
+    repositoryId: ID!
+    branch: String!
+    tag: String
+    changeIdInRepo: String!
+    changeMessageTitle: String
+    changeMessage: String
+    durationInSeconds: Int
+    clockDurationInSeconds: Int
+    pullRequest: Int
+    isSenderUserCollaborator: Boolean
+    senderUserPermissions: String
+    changeTimestamp: Int!
+    buildCreatedTimestamp: Int!
+    status: BuildStatus
+    notifications: [Notification]
+    parsingResult: ParsingResult
+    tasks: [Task]
+    taskGroupsAmount: Int
+    latestGroupTasks: [Task]
+    repository: Repository!
+    viewerPermission: PermissionType!
+    source: String
+    hooks: [Hook]
+    initializer: UserBasicInfo
+}
+
+input BuildApproveInput {
+    buildId: ID!
+    clientMutationId: String
+}
+
+type BuildApprovePayload {
+    build: Build!
+    clientMutationId: String
+}
+
+input BuildReTriggerInput {
+    buildId: ID!
+    clientMutationId: String
+}
+
+type BuildReTriggerPayload {
+    build: Build!
+    clientMutationId: String
+}
+
+"""
+Build status.
+"""
+enum BuildStatus {
+    CREATED
+    NEEDS_APPROVAL
+    TRIGGERED
+    EXECUTING
+    FAILED
+    COMPLETED
+    ABORTED
+    ERRORED
+}
+
+input BuyComputeCreditsInput {
+    platform: String!
+    ownerUid: ID!
+    amountOfCredits: String!
+    paymentTokenId: String!
+    receiptEmail: String
+    clientMutationId: String
+}
+
+type BuyComputeCreditsPayload {
+    error: String
+    info: OwnerInfo
+    user: User
+    clientMutationId: String
+}
+
+type CacheRetrievalAttemptError {
+    key: String!
+    message: String!
+}
+
+type CacheRetrievalAttemptHit {
+    key: String!
+    sizeBytes: Int!
+    downloadedInMilliseconds: Int!
+    extractedInMilliseconds: Int!
+    valid: Boolean!
+}
+
+type CacheRetrievalAttemptMiss {
+    key: String!
+    sizeBytes: Int!
+    populatedInMilliseconds: Int!
+    archivedInMilliseconds: Int!
+    uploadedInMilliseconds: Int!
+}
+
+type CacheRetrievalAttempts {
+    errors: [CacheRetrievalAttemptError]
+    hits: [CacheRetrievalAttemptHit]
+    misses: [CacheRetrievalAttemptMiss]
+}
+
+"""
+Repository Setting to choose where to look for the configuration file.
+"""
+enum ConfigResolutionStrategy {
+    SAME_SHA
+    MERGE_FOR_PRS
+    DEFAULT_BRANCH
+}
+
+input CreatePersistentWorkerPoolInput {
+    platform: String
+    ownerUid: ID!
+    name: String!
+    enabledForPublic: Boolean!
+    clientMutationId: String
+}
+
+type CreatePersistentWorkerPoolPayload {
+    pool: PersistentWorkerPool!
+    clientMutationId: String
+}
+
+type DayDate {
+    year: Int
+    month: Int
+    day: Int
+}
+
+"""
+Repository Setting to choose how to decrypt variables.
+"""
+enum DecryptEnvironmentVariablesFor {
+    USERS_WITH_WRITE_PERMISSIONS
+    EVERYONE
+    COLLABORATORS
+}
+
+input DeletePersistentWorkerInput {
+    poolId: String!
+    name: String!
+    clientMutationId: String
+}
+
+type DeletePersistentWorkerPayload {
+    clientMutationId: String
+}
+
+input DeletePersistentWorkerPoolInput {
+    poolId: String!
+    clientMutationId: String
+}
+
+type DeletePersistentWorkerPoolPayload {
+    deletedPoolId: String!
+    clientMutationId: String
+}
+
+input DeleteWebPushConfigurationInput {
+    endpoint: String!
+    clientMutationId: String
+}
+
+type DeleteWebPushConfigurationPayload {
+    clientMutationId: String
+}
+
+type ExecutionChart {
+    maxValue: Float!
+    minValue: Float!
+    points: [ExecutionChartPoint]!
+}
+
+type ExecutionChartPoint {
+    value: Float!
+    secondsFromStart: Int!
+}
+
+type ExecutionEvent {
+    timestamp: Int!
+    message: String!
+}
+
+type ExecutionInfo {
+    labels: [String]
+    events: [ExecutionEvent]
+    cpuChart: ExecutionChart
+    memoryChart: ExecutionChart
+    cacheRetrievalAttempts: CacheRetrievalAttempts
+    agentNotifications: [Notification]
+}
+
+input GenerateNewOwnerAccessTokenInput {
+    platform: ID
+    ownerUid: ID
+    clientMutationId: String
+}
+
+type GenerateNewOwnerAccessTokenPayload {
+    token: String!
+    clientMutationId: String
+}
+
+input GenerateNewScopedAccessTokenInput {
+    platform: ID
+    ownerUid: ID
+    durationSeconds: Int
+    permission: PermissionType
+    repositoryNames: [String]
+    clientMutationId: String
+}
+
+type GenerateNewScopedAccessTokenPayload {
+    token: String!
+    clientMutationId: String
+}
+
+input GetPersistentWorkerPoolRegistrationTokenInput {
+    poolId: ID
+    clientMutationId: String
+}
+
+type GetPersistentWorkerPoolRegistrationTokenPayload {
+    token: String!
+    clientMutationId: String
+}
+
+type Hook {
+    id: ID!
+    repositoryId: ID!
+    repository: Repository!
+    buildId: ID
+    build: Build
+    taskId: ID
+    task: Task
+    timestamp: Int!
+    name: String!
+    info: HookExecutionInfo!
+}
+
+type HookExecutionInfo {
+    error: String!
+    arguments: String
+    result: String
+    outputLogs: [String]
+    durationNanos: Int!
+    environment: [String]
+}
+
+input HooksReRunInput {
+    hookIds: [ID]
+    clientMutationId: String
+}
+
+type HooksReRunPayload {
+    newHooks: [Hook]
+    clientMutationId: String
+}
+
+type InstanceResources {
+    cpu: Float!
+    memory: Int!
+}
+
+input InvalidateCacheEntriesInput {
+    taskId: ID!
+    cacheKeys: [String]
+    clientMutationId: String
+}
+
+type InvalidateCacheEntriesPayload {
+    clientMutationId: String
+}
+
+"""
+A 64-bit signed integer
+"""
+scalar Int
+
+type MetricsChart {
+    title: String
+    points: [TimePoint]
+    dataUnits: String
+}
+
+input MetricsQueryParameters {
+    status: TaskStatus
+    platform: PlatformType
+    type: String
+    isCommunity: Boolean
+    isPR: Boolean
+    usedComputeCredits: Boolean
+    branch: String
+}
+
+type Mutation {
+    securedVariable(
+        input: RepositorySecuredVariableInput!
+    ): RepositorySecuredVariablePayload
+    securedOrganizationVariable(
+        input: OrganizationSecuredVariableInput!
+    ): OrganizationSecuredVariablePayload
+    securedOwnerVariable(
+        input: OwnerSecuredVariableInput!
+    ): OwnerSecuredVariablePayload
+    updateSecuredOrganizationVariable(
+        input: UpdateOrganizationSecuredVariableInput!
+    ): UpdateOrganizationSecuredVariablePayload
+    updateSecuredOwnerVariable(
+        input: UpdateOwnerSecuredVariableInput!
+    ): UpdateOwnerSecuredVariablePayload
+    createBuild(
+        input: RepositoryCreateBuildInput!
+    ): RepositoryCreateBuildPayload
+    deleteRepository(input: RepositoryDeleteInput!): RepositoryDeletePayload
+    rerun(input: TaskReRunInput!): TaskReRunPayload
+    batchReRun(input: TasksReRunInput!): TasksReRunPayload
+    abortTask(input: TaskAbortInput!): TaskAbortPayload
+    batchAbort(input: TaskBatchAbortInput!): TaskBatchAbortPayload
+    retrigger(input: BuildReTriggerInput!): BuildReTriggerPayload
+    saveSettings(input: RepositorySettingsInput!): RepositorySettingsPayload
+    saveCronSettings(
+        input: RepositorySaveCronSettingsInput!
+    ): RepositorySaveCronSettingsPayload
+    removeCronSettings(
+        input: RepositoryRemoveCronSettingsInput!
+    ): RepositoryRemoveCronSettingsPayload
+    approve(input: BuildApproveInput!): BuildApprovePayload
+    trigger(input: TaskTriggerInput!): TaskTriggerPayload
+    saveWebHookSettings(
+        input: SaveWebHookSettingsInput!
+    ): SaveWebHookSettingsPayload
+    generateNewOwnerAccessToken(
+        input: GenerateNewOwnerAccessTokenInput!
+    ): GenerateNewOwnerAccessTokenPayload
+    generateNewScopedAccessToken(
+        input: GenerateNewScopedAccessTokenInput!
+    ): GenerateNewScopedAccessTokenPayload
+    deletePersistentWorker(
+        input: DeletePersistentWorkerInput!
+    ): DeletePersistentWorkerPayload
+    updatePersistentWorker(
+        input: UpdatePersistentWorkerInput!
+    ): UpdatePersistentWorkerPayload
+    persistentWorkerPoolRegistrationToken(
+        input: GetPersistentWorkerPoolRegistrationTokenInput!
+    ): GetPersistentWorkerPoolRegistrationTokenPayload
+    createPersistentWorkerPool(
+        input: CreatePersistentWorkerPoolInput!
+    ): CreatePersistentWorkerPoolPayload
+    updatePersistentWorkerPool(
+        input: UpdatePersistentWorkerPoolInput!
+    ): UpdatePersistentWorkerPoolPayload
+    deletePersistentWorkerPool(
+        input: DeletePersistentWorkerPoolInput!
+    ): DeletePersistentWorkerPoolPayload
+    saveWebPushConfiguration(
+        input: SaveWebPushConfigurationInput!
+    ): SaveWebPushConfigurationPayload
+    deleteWebPushConfiguration(
+        input: DeleteWebPushConfigurationInput!
+    ): DeleteWebPushConfigurationPayload
+    rerunHooks(input: HooksReRunInput!): HooksReRunPayload
+    repositorySetMetadata(
+        input: RepositorySetMetadataInput!
+    ): RepositorySetMetadataPayload
+    invalidateCacheEntries(
+        input: InvalidateCacheEntriesInput!
+    ): InvalidateCacheEntriesPayload
+    saveBillingSettings(input: BillingSettingsInput!): BillingSettingsPayload
+    buyComputeCredits(input: BuyComputeCreditsInput!): BuyComputeCreditsPayload
+}
+
+type Notification {
+    level: NotificationLevel
+    message: String!
+    link: String
+}
+
+"""
+Notification level.
+"""
+enum NotificationLevel {
+    INFO
+    WARNING
+    ERROR
+}
+
+input OrganizationSecuredVariableInput {
+    organizationId: ID!
+    valueToSecure: String!
+    clientMutationId: String
+}
+
+type OrganizationSecuredVariablePayload {
+    variableName: String!
+    clientMutationId: String
+}
+
+type OwnerInfo {
+    uid: ID!
+    platform: String!
+    name: String!
+    description: OwnerInfoDescription!
+    viewerPermission: PermissionType
+    apiToken: ApiAccessToken
+    persistentWorkerPools: [PersistentWorkerPool]
+    webhookSettings: WebHookSettings
+    webhookDeliveries(
+        """
+        fetching only nodes before this node (exclusive)
+        """
+        before: String
+
+        """
+        fetching only nodes after this node (exclusive)
+        """
+        after: String
+
+        """
+        fetching only the first certain number of nodes
+        """
+        first: Int
+
+        """
+        fetching only the last certain number of nodes
+        """
+        last: Int
+    ): OwnerWebhookDeliveriesConnection
+    repositories(
+        """
+        fetching only nodes before this node (exclusive)
+        """
+        before: String
+
+        """
+        fetching only nodes after this node (exclusive)
+        """
+        after: String
+
+        """
+        fetching only the first certain number of nodes
+        """
+        first: Int
+
+        """
+        fetching only the last certain number of nodes
+        """
+        last: Int
+    ): OwnerRepositoriesConnection
+    balanceInCredits: String!
+    billingSettings: BillingSettings
+    transactions(
+        """
+        fetching only nodes before this node (exclusive)
+        """
+        before: String
+
+        """
+        fetching only nodes after this node (exclusive)
+        """
+        after: String
+
+        """
+        fetching only the first certain number of nodes
+        """
+        first: Int
+
+        """
+        fetching only the last certain number of nodes
+        """
+        last: Int
+    ): OwnerTransactionsConnection
+}
+
+type OwnerInfoDescription {
+    message: String!
+    actions: [OwnerInfoDescriptionAction]
+}
+
+type OwnerInfoDescriptionAction {
+    title: String!
+    link: String!
+    icon: String
+}
+
+"""
+A connection to a list of items.
+"""
+type OwnerRepositoriesConnection {
+    """
+    a list of edges
+    """
+    edges: [OwnerRepositoryEdge]
+
+    """
+    details about this specific page
+    """
+    pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection
+"""
+type OwnerRepositoryEdge {
+    """
+    The item at the end of the edge
+    """
+    node: Repository
+
+    """
+    cursor marks a unique position or index into the connection
+    """
+    cursor: String!
+}
+
+input OwnerSecuredVariableInput {
+    platform: String!
+    ownerUid: ID!
+    valueToSecure: String!
+    clientMutationId: String
+}
+
+type OwnerSecuredVariablePayload {
+    variableName: String!
+    clientMutationId: String
+}
+
+type OwnerTransaction {
+    platform: String!
+    ownerUid: String!
+    taskId: Int!
+    repositoryId: Int!
+    timestamp: Int!
+    microCreditsAmount: Int!
+    creditsAmount: String!
+    initialCreditsAmount: String
+    task: Task
+    repository: Repository
+}
+
+"""
+An edge in a connection
+"""
+type OwnerTransactionEdge {
+    """
+    The item at the end of the edge
+    """
+    node: OwnerTransaction
+
+    """
+    cursor marks a unique position or index into the connection
+    """
+    cursor: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type OwnerTransactionsConnection {
+    """
+    a list of edges
+    """
+    edges: [OwnerTransactionEdge]
+
+    """
+    details about this specific page
+    """
+    pageInfo: PageInfo!
+}
+
+"""
+A connection to a list of items.
+"""
+type OwnerWebhookDeliveriesConnection {
+    """
+    a list of edges
+    """
+    edges: [OwnerWebHookDeliveryEdge]
+
+    """
+    details about this specific page
+    """
+    pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection
+"""
+type OwnerWebHookDeliveryEdge {
+    """
+    The item at the end of the edge
+    """
+    node: WebHookDelivery
+
+    """
+    cursor marks a unique position or index into the connection
+    """
+    cursor: String!
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+    """
+    When paginating forwards, are there more items?
+    """
+    hasNextPage: Boolean!
+
+    """
+    When paginating backwards, are there more items?
+    """
+    hasPreviousPage: Boolean!
+
+    """
+    When paginating backwards, the cursor to continue.
+    """
+    startCursor: String
+
+    """
+    When paginating forwards, the cursor to continue.
+    """
+    endCursor: String
+}
+
+type ParsingResult {
+    rawYamlConfig: String!
+    rawStarlarkConfig: String!
+    processedYamlConfig: String!
+    issues: [ParsingResultIssue]
+    affectedFiles: [String]
+    outputLogs: [String]
+    environment: [String]
+}
+
+type ParsingResultIssue {
+    level: ParsingResultIssueLevel!
+    message: String!
+    rawDetails: String!
+    path: String!
+    line: Int!
+    column: Int!
+}
+
+enum ParsingResultIssueLevel {
+    INFO
+    WARNING
+    ERROR
+}
+
+"""
+User access level.
+"""
+enum PermissionType {
+    NONE
+    READ
+    WRITE
+    ADMIN
+}
+
+type PersistentWorker {
+    name: String!
+    disabled: Boolean!
+    arch: String!
+    hostname: String!
+    os: String!
+    version: String!
+    labels: [String]
+    info: PersistentWorkerInfo
+    assignedTasks(
+        """
+        fetching only nodes before this node (exclusive)
+        """
+        before: String
+
+        """
+        fetching only nodes after this node (exclusive)
+        """
+        after: String
+
+        """
+        fetching only the first certain number of nodes
+        """
+        first: Int
+
+        """
+        fetching only the last certain number of nodes
+        """
+        last: Int
+    ): PersistentWorkerAssignedTasksConnection
+}
+
+"""
+An edge in a connection
+"""
+type PersistentWorkerAssignedTaskEdge {
+    """
+    The item at the end of the edge
+    """
+    node: Task
+
+    """
+    cursor marks a unique position or index into the connection
+    """
+    cursor: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type PersistentWorkerAssignedTasksConnection {
+    """
+    a list of edges
+    """
+    edges: [PersistentWorkerAssignedTaskEdge]
+
+    """
+    details about this specific page
+    """
+    pageInfo: PageInfo!
+}
+
+type PersistentWorkerInfo {
+    heartbeatTimestamp: Int!
+    runningTasks: [Task]
+    resourcesTotal: [PersistentWorkerResource]
+}
+
+type PersistentWorkerPool {
+    id: ID!
+    name: String!
+    enabledForPublic: Boolean!
+    workers: [PersistentWorker]
+    viewerPermission: PermissionType
+}
+
+type PersistentWorkerResource {
+    key: String!
+    value: Float!
+}
+
+"""
+Task platform.
+"""
+enum PlatformType {
+    LINUX
+    DARWIN
+    WINDOWS
+    FREEBSD
+}
+
+type Query {
+    viewer: User
+    repository(id: ID!): Repository
+    ownerRepository(
+        platform: String!
+        owner: String!
+        name: String!
+    ): Repository
+    build(id: ID!): Build
+    searchBuilds(
+        repositoryOwner: String!
+        repositoryName: String!
+        SHA: String
+    ): [Build]
+    task(id: ID!): Task
+    hook(id: ID!): Hook
+    webhookDelivery(id: String!): WebHookDelivery
+    persistentWorkerPool(poolId: ID): PersistentWorkerPool
+    persistentWorker(poolId: ID, name: String): PersistentWorker
+    ownerInfo(platform: String, uid: ID): OwnerInfo
+    ownerInfoByName(platform: String, name: String): OwnerInfo
+}
+
+type Repository {
+    id: ID!
+    platform: String!
+    owner: String!
+    name: String!
+    cloneUrl: String!
+    defaultBranch: String!
+    masterBranch: String!
+    isPrivate: Boolean!
+    builds(
+        """
+        fetching only nodes before this node (exclusive)
+        """
+        before: String
+
+        """
+        fetching only nodes after this node (exclusive)
+        """
+        after: String
+
+        """
+        fetching only the first certain number of nodes
+        """
+        first: Int
+
+        """
+        fetching only the last certain number of nodes
+        """
+        last: Int
+
+        """
+        branch to fetch builds for
+        """
+        branch: String
+    ): RepositoryBuildsConnection
+    settings: RepositorySettings
+    cronSettings: [RepositoryCronSettings]
+    viewerPermission: PermissionType
+    lastDefaultBranchBuild: Build
+    metrics(parameters: MetricsQueryParameters): [MetricsChart]
+    visibleMetadata: [RepositoryMetadata]
+    metadata(key: String): RepositoryMetadata
+}
+
+"""
+An edge in a connection
+"""
+type RepositoryBuildEdge {
+    """
+    The item at the end of the edge
+    """
+    node: Build
+
+    """
+    cursor marks a unique position or index into the connection
+    """
+    cursor: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type RepositoryBuildsConnection {
+    """
+    a list of edges
+    """
+    edges: [RepositoryBuildEdge]
+
+    """
+    details about this specific page
+    """
+    pageInfo: PageInfo!
+}
+
+input RepositoryCreateBuildInput {
+    repositoryId: ID!
+    branch: String!
+    sha: String
+    configOverride: String
+    clientMutationId: String
+}
+
+type RepositoryCreateBuildPayload {
+    build: Build!
+    clientMutationId: String
+}
+
+type RepositoryCronSettings {
+    name: String!
+    expression: String!
+    branch: String!
+    nextInvocationTimestamp: Int!
+    lastInvocationBuild: Build
+}
+
+input RepositoryDeleteInput {
+    repositoryId: ID!
+    clientMutationId: String
+}
+
+type RepositoryDeletePayload {
+    deleted: Boolean!
+    clientMutationId: String
+}
+
+type RepositoryMetadata {
+    key: String
+    value: String
+    description: String
+    hidden: Boolean
+}
+
+input RepositoryRemoveCronSettingsInput {
+    repositoryId: ID!
+    name: String!
+    clientMutationId: String
+}
+
+type RepositoryRemoveCronSettingsPayload {
+    settings: [RepositoryCronSettings]
+    clientMutationId: String
+}
+
+input RepositorySaveCronSettingsInput {
+    repositoryId: ID!
+    name: String!
+    expression: String!
+    branch: String!
+    clientMutationId: String
+}
+
+type RepositorySaveCronSettingsPayload {
+    settings: [RepositoryCronSettings]
+    clientMutationId: String
+}
+
+input RepositorySecuredVariableInput {
+    repositoryId: ID!
+    valueToSecure: String!
+    clientMutationId: String
+}
+
+type RepositorySecuredVariablePayload {
+    variableName: String!
+    clientMutationId: String
+}
+
+input RepositorySetMetadataInput {
+    repositoryId: ID!
+    key: String
+    value: String
+    description: String
+    hidden: Boolean
+    clientMutationId: String
+}
+
+type RepositorySetMetadataPayload {
+    clientMutationId: String
+}
+
+type RepositorySettings {
+    needsApproval: Boolean
+    decryptEnvironmentVariables: DecryptEnvironmentVariablesFor
+    configResolutionStrategy: ConfigResolutionStrategy
+    additionalEnvironment: [String]
+    cacheVersion: Int
+}
+
+input RepositorySettingsInput {
+    repositoryId: ID!
+    needsApproval: Boolean
+    decryptEnvironmentVariables: DecryptEnvironmentVariablesFor
+    configResolutionStrategy: ConfigResolutionStrategy
+    additionalEnvironment: [String]
+    cacheVersion: Int
+    clientMutationId: String
+}
+
+type RepositorySettingsPayload {
+    settings: RepositorySettings!
+    clientMutationId: String
+}
+
+input SaveWebHookSettingsInput {
+    platform: String!
+    ownerUid: ID!
+    webhookURL: String!
+    secretToken: String
+    clientMutationId: String
+}
+
+type SaveWebHookSettingsPayload {
+    error: String
+    info: OwnerInfo
+    clientMutationId: String
+}
+
+input SaveWebPushConfigurationInput {
+    endpoint: String!
+    p256dhKey: String!
+    authKey: String!
+    clientMutationId: String
+}
+
+type SaveWebPushConfigurationPayload {
+    clientMutationId: String
+}
+
+type Subscription {
+    task(id: ID!): Task
+    build(id: ID!): Build
+    repository(id: ID!): Repository
+}
+
+type Task {
+    id: ID!
+    buildId: ID!
+    repositoryId: ID!
+    name: String!
+    localGroupId: Int!
+    requiredGroups: [Int]
+    status: TaskStatus
+    notifications: [Notification]
+    commands: [TaskCommand]
+    firstFailedCommand: TaskCommand
+    artifacts: [Artifacts]
+    commandLogsTail(name: String!): [String]
+    statusTimestamp: Int!
+    creationTimestamp: Int!
+    scheduledTimestamp: Int!
+    executingTimestamp: Int!
+    finalStatusTimestamp: Int!
+    durationInSeconds: Int!
+    labels: [String]
+    uniqueLabels: [String]
+    requiredPRLabels: [String]
+    timeoutInSeconds: Int!
+    optional: Boolean
+    statusDurations: [TaskStatusDuration]
+    repository: Repository!
+    build: Build!
+    previousRuns: [Task]
+    allOtherRuns: [Task]
+    dependencies: [Task]
+    automaticReRun: Boolean!
+    automaticallyReRunnable: Boolean!
+    experimental: Boolean!
+    stateful: Boolean!
+    useComputeCredits: Boolean!
+    usedComputeCredits: Boolean!
+    triggerType: TaskTriggerType!
+    instanceResources: InstanceResources
+    executionInfo: ExecutionInfo
+    baseEnvironment: [String]
+    hooks: [Hook]
+    reranBy: UserBasicInfo
+    cancelledBy: UserBasicInfo
+    terminalCredential: TerminalCredential
+    transaction: OwnerTransaction
+}
+
+input TaskAbortInput {
+    taskId: ID!
+    clientMutationId: String
+}
+
+type TaskAbortPayload {
+    abortedTask: Task!
+    clientMutationId: String
+}
+
+input TaskBatchAbortInput {
+    taskIds: [ID]
+    clientMutationId: String
+}
+
+type TaskBatchAbortPayload {
+    tasks: [Task]
+    clientMutationId: String
+}
+
+type TaskCommand {
+    name: String
+    type: TaskCommandType
+    status: TaskCommandStatus
+    durationInSeconds: Int
+    logsTail: [String]
+}
+
+"""
+Task Command status.
+"""
+enum TaskCommandStatus {
+    UNDEFINED
+    SUCCESS
+    FAILURE
+    EXECUTING
+    SKIPPED
+    ABORTED
+}
+
+"""
+Task Command type.
+"""
+enum TaskCommandType {
+    WAIT
+    EXIT
+    EXECUTE_SCRIPT
+    CACHE
+    UPLOAD_CACHE
+    CLONE
+    EXECUTE_BACKGROUND_SCRIPT
+    ARTIFACTS
+    WAIT_FOR_TERMINAL
+}
+
+input TaskReRunInput {
+    taskId: ID!
+    attachTerminal: Boolean
+    clientMutationId: String
+}
+
+type TaskReRunPayload {
+    newTask: Task!
+    clientMutationId: String
+}
+
+input TasksReRunInput {
+    taskIds: [ID]
+    attachTerminal: Boolean
+    clientMutationId: String
+}
+
+type TasksReRunPayload {
+    newTasks: [Task]
+    clientMutationId: String
+}
+
+"""
+Task status.
+"""
+enum TaskStatus {
+    CREATED
+    TRIGGERED
+    SCHEDULED
+    EXECUTING
+    ABORTED
+    FAILED
+    COMPLETED
+    SKIPPED
+    PAUSED
+}
+
+type TaskStatusDuration {
+    status: TaskStatus!
+    durationInSeconds: Int!
+}
+
+input TaskTriggerInput {
+    taskId: ID!
+    clientMutationId: String
+}
+
+type TaskTriggerPayload {
+    task: Task!
+    clientMutationId: String
+}
+
+"""
+Task trigger type.
+"""
+enum TaskTriggerType {
+    AUTOMATIC
+    MANUAL
+}
+
+type TerminalCredential {
+    locator: String!
+    trustedSecret: String!
+}
+
+type TimePoint {
+    date: DayDate
+    value: Float
+}
+
+input UpdateOrganizationSecuredVariableInput {
+    organizationId: ID!
+    name: String!
+    updatedValueToSecure: String!
+    clientMutationId: String
+}
+
+type UpdateOrganizationSecuredVariablePayload {
+    variableName: String!
+    clientMutationId: String
+}
+
+input UpdateOwnerSecuredVariableInput {
+    platform: String!
+    ownerUid: ID!
+    name: String!
+    updatedValueToSecure: String!
+    clientMutationId: String
+}
+
+type UpdateOwnerSecuredVariablePayload {
+    variableName: String!
+    clientMutationId: String
+}
+
+input UpdatePersistentWorkerInput {
+    poolId: String!
+    name: String!
+    disabled: Boolean!
+    clientMutationId: String
+}
+
+type UpdatePersistentWorkerPayload {
+    worker: PersistentWorker!
+    clientMutationId: String
+}
+
+input UpdatePersistentWorkerPoolInput {
+    poolId: String!
+    name: String!
+    enabledForPublic: Boolean!
+    clientMutationId: String
+}
+
+type UpdatePersistentWorkerPoolPayload {
+    pool: PersistentWorkerPool!
+    clientMutationId: String
+}
+
+type User implements UserBasicInfo {
+    id: ID!
+    category: User!
+    avatarURL: String
+    builds(
+        """
+        fetching only nodes before this node (exclusive)
+        """
+        before: String
+
+        """
+        fetching only nodes after this node (exclusive)
+        """
+        after: String
+
+        """
+        fetching only the first certain number of nodes
+        """
+        first: Int
+
+        """
+        fetching only the last certain number of nodes
+        """
+        last: Int
+
+        """
+        fetching only builds with the specified statuses
+        """
+        statuses: [BuildStatus]
+    ): UserBuildsConnection
+    topActiveRepositories: [Repository]
+    balanceInCredits: String!
+    apiToken: ApiAccessToken
+    webPushServerKey: String!
+    persistentWorkerPools: [PersistentWorkerPool]
+    relatedOwners: [OwnerInfo]
+    transactions(
+        """
+        fetching only nodes before this node (exclusive)
+        """
+        before: String
+
+        """
+        fetching only nodes after this node (exclusive)
+        """
+        after: String
+
+        """
+        fetching only the first certain number of nodes
+        """
+        first: Int
+
+        """
+        fetching only the last certain number of nodes
+        """
+        last: Int
+    ): UserTransactionsConnection
+}
+
+interface UserBasicInfo {
+    id: ID!
+    category: User!
+    avatarURL: String
+}
+
+"""
+An edge in a connection
+"""
+type UserBuildEdge {
+    """
+    The item at the end of the edge
+    """
+    node: Build
+
+    """
+    cursor marks a unique position or index into the connection
+    """
+    cursor: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type UserBuildsConnection {
+    """
+    a list of edges
+    """
+    edges: [UserBuildEdge]
+
+    """
+    details about this specific page
+    """
+    pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection
+"""
+type UserTransactionEdge {
+    """
+    The item at the end of the edge
+    """
+    node: OwnerTransaction
+
+    """
+    cursor marks a unique position or index into the connection
+    """
+    cursor: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type UserTransactionsConnection {
+    """
+    a list of edges
+    """
+    edges: [UserTransactionEdge]
+
+    """
+    details about this specific page
+    """
+    pageInfo: PageInfo!
+}
+
+type WebHookDelivery {
+    id: String!
+    platform: String!
+    ownerUid: String!
+    repositoryId: Int!
+    timestamp: Int!
+    payload: WebHookDeliveryPayload!
+    response: WebHookDeliveryResponse!
+}
+
+type WebHookDeliveryPayload {
+    event: String!
+    action: String!
+    data: String!
+}
+
+type WebHookDeliveryResponse {
+    status: Int!
+    duration: Int!
+    data: String!
+}
+
+type WebHookSettings {
+    webhookURL: String
+    maskedSecretToken: String!
+}

@@ -1,12 +1,19 @@
 {
     "compilerOptions": {
-        "target": "es2020",
-        "module": "NodeNext",
+        "target": "esnext",
+        "module": "commonjs",
         "moduleResolution": "node",
         "esModuleInterop": true,
         "strict": true,
         "outDir": "dist",
-        "baseUrl": "src"
+        "baseUrl": "src",
+        "skipLibCheck": true,
+        "sourceMap": true
     },
-    "include": ["src/index.ts"]
+    "include": [
+        "src/index.ts",
+        "src/utils.ts",
+        "src/api/gqlApi.ts",
+        "src/api/queries.ts"
+    ]
 }

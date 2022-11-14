@@ -29,7 +29,10 @@ const RAW_RUNTIME_STATE =
           ["@apollo/client", "virtual:c8ddf7c0096fb1df37b007261c19bf42dc478c92b163770b8e5b26c9d56c61778f32b446eddd96ebfc4c3e88a45decfc73e161021369ee560450d9058073024c#npm:3.7.1"],\
           ["@types/node", "npm:18.11.9"],\
           ["fastify", "npm:4.9.2"],\
+          ["get-graphql-schema", "npm:2.1.2"],\
+          ["graphql", "npm:16.6.0"],\
           ["prettier", "npm:2.7.1"],\
+          ["react", "npm:18.2.0"],\
           ["typescript", "patch:typescript@npm%3A4.8.4#optional!builtin<compat/typescript>::version=4.8.4&hash=0102e9"]\
         ],\
         "linkType": "SOFT"\
@@ -56,13 +59,13 @@ const RAW_RUNTIME_STATE =
           ["@wry/context", "npm:0.7.0"],\
           ["@wry/equality", "npm:0.5.3"],\
           ["@wry/trie", "npm:0.3.2"],\
-          ["graphql", null],\
+          ["graphql", "npm:16.6.0"],\
           ["graphql-tag", "virtual:1ef235b419e11871283bc98ed9a350e158d1c2eaff6712777836d1b72fa6e6d50bc74d347d63ae26e344351b6ede0e20562a2a37f9a1faaa075460fb4caed6b4#npm:2.12.6"],\
           ["graphql-ws", null],\
           ["hoist-non-react-statics", "npm:3.3.2"],\
           ["optimism", "npm:0.16.2"],\
           ["prop-types", "npm:15.8.1"],\
-          ["react", null],\
+          ["react", "npm:18.2.0"],\
           ["react-dom", null],\
           ["response-iterator", "npm:0.2.6"],\
           ["subscriptions-transport-ws", null],\
@@ -139,7 +142,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@graphql-typed-document-node/core", "virtual:1ef235b419e11871283bc98ed9a350e158d1c2eaff6712777836d1b72fa6e6d50bc74d347d63ae26e344351b6ede0e20562a2a37f9a1faaa075460fb4caed6b4#npm:3.1.1"],\
           ["@types/graphql", null],\
-          ["graphql", null]\
+          ["graphql", "npm:16.6.0"]\
         ],\
         "packagePeers": [\
           "@types/graphql",\
@@ -241,6 +244,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["ansi-styles", [\
+      ["npm:3.2.1", {\
+        "packageLocation": "./.yarn/cache/ansi-styles-npm-3.2.1-8cb8107983-88847a8969.zip/node_modules/ansi-styles/",\
+        "packageDependencies": [\
+          ["ansi-styles", "npm:3.2.1"],\
+          ["color-convert", "npm:1.9.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["archy", [\
       ["npm:1.0.0", {\
         "packageLocation": "./.yarn/cache/archy-npm-1.0.0-7db8bfdc3b-68f2a06546.zip/node_modules/archy/",\
@@ -291,6 +304,18 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["chalk", [\
+      ["npm:2.4.2", {\
+        "packageLocation": "./.yarn/cache/chalk-npm-2.4.2-3ea16dd91e-befd2fe888.zip/node_modules/chalk/",\
+        "packageDependencies": [\
+          ["chalk", "npm:2.4.2"],\
+          ["ansi-styles", "npm:3.2.1"],\
+          ["escape-string-regexp", "npm:1.0.5"],\
+          ["supports-color", "npm:5.5.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["cirrus-nightly-link", [\
       ["workspace:.", {\
         "packageLocation": "./",\
@@ -299,10 +324,32 @@ const RAW_RUNTIME_STATE =
           ["@apollo/client", "virtual:c8ddf7c0096fb1df37b007261c19bf42dc478c92b163770b8e5b26c9d56c61778f32b446eddd96ebfc4c3e88a45decfc73e161021369ee560450d9058073024c#npm:3.7.1"],\
           ["@types/node", "npm:18.11.9"],\
           ["fastify", "npm:4.9.2"],\
+          ["get-graphql-schema", "npm:2.1.2"],\
+          ["graphql", "npm:16.6.0"],\
           ["prettier", "npm:2.7.1"],\
+          ["react", "npm:18.2.0"],\
           ["typescript", "patch:typescript@npm%3A4.8.4#optional!builtin<compat/typescript>::version=4.8.4&hash=0102e9"]\
         ],\
         "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["color-convert", [\
+      ["npm:1.9.3", {\
+        "packageLocation": "./.yarn/cache/color-convert-npm-1.9.3-1fe690075e-42f852d574.zip/node_modules/color-convert/",\
+        "packageDependencies": [\
+          ["color-convert", "npm:1.9.3"],\
+          ["color-name", "npm:1.1.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["color-name", [\
+      ["npm:1.1.3", {\
+        "packageLocation": "./.yarn/cache/color-name-npm-1.1.3-728b7b5d39-b7313c98fd.zip/node_modules/color-name/",\
+        "packageDependencies": [\
+          ["color-name", "npm:1.1.3"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["cookie", [\
@@ -333,6 +380,15 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@types/supports-color",\
           "supports-color"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["escape-string-regexp", [\
+      ["npm:1.0.5", {\
+        "packageLocation": "./.yarn/cache/escape-string-regexp-npm-1.0.5-3284de402f-14d2c74a99.zip/node_modules/escape-string-regexp/",\
+        "packageDependencies": [\
+          ["escape-string-regexp", "npm:1.0.5"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -470,6 +526,36 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["get-graphql-schema", [\
+      ["npm:2.1.2", {\
+        "packageLocation": "./.yarn/cache/get-graphql-schema-npm-2.1.2-73882c8ddd-0b80863bd4.zip/node_modules/get-graphql-schema/",\
+        "packageDependencies": [\
+          ["get-graphql-schema", "npm:2.1.2"],\
+          ["chalk", "npm:2.4.2"],\
+          ["graphql", "npm:14.7.0"],\
+          ["minimist", "npm:1.2.7"],\
+          ["node-fetch", "virtual:73882c8dddea223b6b00b94058e511dc22089371c9e605bed63bb85d97cb4336d7db161433f554b720e85059e00475cb4fea83fd4ae57f8e7e4ef23e754b8207#npm:2.6.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["graphql", [\
+      ["npm:14.7.0", {\
+        "packageLocation": "./.yarn/cache/graphql-npm-14.7.0-5e981fc8a0-6b86e22940.zip/node_modules/graphql/",\
+        "packageDependencies": [\
+          ["graphql", "npm:14.7.0"],\
+          ["iterall", "npm:1.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:16.6.0", {\
+        "packageLocation": "./.yarn/cache/graphql-npm-16.6.0-301c470966-686582916b.zip/node_modules/graphql/",\
+        "packageDependencies": [\
+          ["graphql", "npm:16.6.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["graphql-tag", [\
       ["npm:2.12.6", {\
         "packageLocation": "./.yarn/cache/graphql-tag-npm-2.12.6-99a5a7f6de-35c9fbdc43.zip/node_modules/graphql-tag/",\
@@ -483,12 +569,21 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["graphql-tag", "virtual:1ef235b419e11871283bc98ed9a350e158d1c2eaff6712777836d1b72fa6e6d50bc74d347d63ae26e344351b6ede0e20562a2a37f9a1faaa075460fb4caed6b4#npm:2.12.6"],\
           ["@types/graphql", null],\
-          ["graphql", null],\
+          ["graphql", "npm:16.6.0"],\
           ["tslib", "npm:2.4.1"]\
         ],\
         "packagePeers": [\
           "@types/graphql",\
           "graphql"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["has-flag", [\
+      ["npm:3.0.0", {\
+        "packageLocation": "./.yarn/cache/has-flag-npm-3.0.0-16ac11fe05-b1cb757b71.zip/node_modules/has-flag/",\
+        "packageDependencies": [\
+          ["has-flag", "npm:3.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -517,6 +612,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/ipaddr.js-npm-1.9.1-19ae7878b4-5b70543172.zip/node_modules/ipaddr.js/",\
         "packageDependencies": [\
           ["ipaddr.js", "npm:1.9.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["iterall", [\
+      ["npm:1.3.0", {\
+        "packageLocation": "./.yarn/cache/iterall-npm-1.3.0-a2cb04809f-4e49cae82d.zip/node_modules/iterall/",\
+        "packageDependencies": [\
+          ["iterall", "npm:1.3.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -571,11 +675,43 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["minimist", [\
+      ["npm:1.2.7", {\
+        "packageLocation": "./.yarn/cache/minimist-npm-1.2.7-51d33b1371-7bb50119bb.zip/node_modules/minimist/",\
+        "packageDependencies": [\
+          ["minimist", "npm:1.2.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["ms", [\
       ["npm:2.1.2", {\
         "packageLocation": "./.yarn/cache/ms-npm-2.1.2-ec0c1512ff-3f46af60a0.zip/node_modules/ms/",\
         "packageDependencies": [\
           ["ms", "npm:2.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["node-fetch", [\
+      ["npm:2.6.7", {\
+        "packageLocation": "./.yarn/cache/node-fetch-npm-2.6.7-777aa2a6df-05c03fe66f.zip/node_modules/node-fetch/",\
+        "packageDependencies": [\
+          ["node-fetch", "npm:2.6.7"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:73882c8dddea223b6b00b94058e511dc22089371c9e605bed63bb85d97cb4336d7db161433f554b720e85059e00475cb4fea83fd4ae57f8e7e4ef23e754b8207#npm:2.6.7", {\
+        "packageLocation": "./.yarn/__virtual__/node-fetch-virtual-5af8618434/0/cache/node-fetch-npm-2.6.7-777aa2a6df-05c03fe66f.zip/node_modules/node-fetch/",\
+        "packageDependencies": [\
+          ["node-fetch", "virtual:73882c8dddea223b6b00b94058e511dc22089371c9e605bed63bb85d97cb4336d7db161433f554b720e85059e00475cb4fea83fd4ae57f8e7e4ef23e754b8207#npm:2.6.7"],\
+          ["@types/encoding", null],\
+          ["encoding", null],\
+          ["whatwg-url", "npm:5.0.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/encoding",\
+          "encoding"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -713,6 +849,16 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/quick-format-unescaped-npm-4.0.4-7e22c9b7dc-58a01dba94.zip/node_modules/quick-format-unescaped/",\
         "packageDependencies": [\
           ["quick-format-unescaped", "npm:4.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react", [\
+      ["npm:18.2.0", {\
+        "packageLocation": "./.yarn/cache/react-npm-18.2.0-1eae08fee2-8434e5782c.zip/node_modules/react/",\
+        "packageDependencies": [\
+          ["react", "npm:18.2.0"],\
+          ["loose-envify", "npm:1.4.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -859,6 +1005,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["supports-color", [\
+      ["npm:5.5.0", {\
+        "packageLocation": "./.yarn/cache/supports-color-npm-5.5.0-183ac537bc-2eca8c4c8f.zip/node_modules/supports-color/",\
+        "packageDependencies": [\
+          ["supports-color", "npm:5.5.0"],\
+          ["has-flag", "npm:3.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["symbol-observable", [\
       ["npm:4.0.0", {\
         "packageLocation": "./.yarn/cache/symbol-observable-npm-4.0.0-5c36594410-ca21ea188b.zip/node_modules/symbol-observable/",\
@@ -883,6 +1039,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/tiny-lru-npm-9.0.3-12df11b8e2-1464cb8113.zip/node_modules/tiny-lru/",\
         "packageDependencies": [\
           ["tiny-lru", "npm:9.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["tr46", [\
+      ["npm:0.0.3", {\
+        "packageLocation": "./.yarn/cache/tr46-npm-0.0.3-de53018915-c670667f2d.zip/node_modules/tr46/",\
+        "packageDependencies": [\
+          ["tr46", "npm:0.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -921,6 +1086,26 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["uri-js", "npm:4.4.1"],\
           ["punycode", "npm:2.1.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["webidl-conversions", [\
+      ["npm:3.0.1", {\
+        "packageLocation": "./.yarn/cache/webidl-conversions-npm-3.0.1-60310f6a2b-57c8c5fdd9.zip/node_modules/webidl-conversions/",\
+        "packageDependencies": [\
+          ["webidl-conversions", "npm:3.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["whatwg-url", [\
+      ["npm:5.0.0", {\
+        "packageLocation": "./.yarn/cache/whatwg-url-npm-5.0.0-374fb45e60-bd0cc6b75b.zip/node_modules/whatwg-url/",\
+        "packageDependencies": [\
+          ["whatwg-url", "npm:5.0.0"],\
+          ["tr46", "npm:0.0.3"],\
+          ["webidl-conversions", "npm:3.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\

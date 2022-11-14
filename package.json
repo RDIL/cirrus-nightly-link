@@ -3,13 +3,16 @@
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
-    "type": "module",
+    "type": "commonjs",
     "dependencies": {
         "@apollo/client": "^3.7.1",
-        "fastify": "^4.9.2"
+        "fastify": "^4.9.2",
+        "graphql": "^16.6.0",
+        "react": "^18.2.0"
     },
     "devDependencies": {
         "@types/node": "^18.11.9",
+        "get-graphql-schema": "^2.1.2",
         "prettier": "^2.7.1",
         "typescript": "^4.8.4"
     },
@@ -19,7 +22,9 @@
         "trailingComma": "all"
     },
     "scripts": {
-        "prettier": "prettier --write \"**/*.{ts,js,json,md}\""
+        "prettier": "prettier --write \"**/*.{ts,js,json,md}\"",
+        "sync-schema": "get-graphql-schema https://api.cirrus-ci.com/schema.json | sed -e 's/Long/Int/g' > schema.gql && prettier --write schema.gql",
+        "build": "tsc"
     },
     "packageManager": "yarn@4.0.0-rc.28"
 }
