@@ -1,7 +1,8 @@
 {
     "name": "cirrus-nightly-link",
-    "version": "1.0.0",
-    "main": "index.js",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "private": true,
     "license": "MIT",
     "type": "commonjs",
     "dependencies": {
@@ -24,7 +25,8 @@
     "scripts": {
         "prettier": "prettier --write \"**/*.{ts,js,json,md}\"",
         "sync-schema": "get-graphql-schema https://api.cirrus-ci.com/schema.json | sed -e 's/Long/Int/g' > schema.gql && prettier --write schema.gql",
-        "build": "tsc"
+        "build": "tsc",
+        "start": "node --enable-source-maps dist/index.js"
     },
     "packageManager": "yarn@4.0.0-rc.28"
 }
